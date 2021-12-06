@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/public/css/styles.css" rel="stylesheet" type="text/css">
+	  <script src="https://kit.fontawesome.com/46b3483851.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+     <title>Retiro 10%</title>
+     <style>
+        body{background-color:#a4c2eb;}
+    </style>
+
+</head>
+<body>
+    <div class="container-sign">
+        <div class="wallet">
+            <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
+                <hr>
+                <ul class="nav nav-pills flex-column mb-auto">
+                  <li class="nav-item">
+                    <a href="#" class="nav-link active" aria-current="page">
+                      <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
+                      Cuenta
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/profile/solicitudes/<%= afiliado.rut %>" class="nav-link text-white">
+                      <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+                      Solicitudes
+                    </a>
+                  </li>
+                </ul>
+                <hr>
+                <div class="dropdown">
+                    <a href="/logout" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                      <strong>Cerrar sesion</strong>
+                    </a>
+                
+                  </div>
+              </div>
+         
+            <div class="cc-select">          
+            </div>
+          </aside>
+          <content class="right-trans">
+            
+            <h1 > Saldo</h1>
+
+            <h3 style="color:#188533">$<%= afiliado.saldo_cuenta
+              %> <p>CHL</p></h3>
+           
+              
+              <h5>SU ID </h5>
+              <h6> <%= afiliado._id%></h6>
+              <br>
+              <div class="trans-list">   
+              </div>
+              <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+                <div class="col">
+                  <label>Nombre</label>
+                  <div class="p-3 border bg-light"><%= afiliado.nombre %></div>
+                </div>
+                <div class="col">
+                  <label>RUN</label>
+                  <div class="p-3 border bg-light"><%= afiliado.rut %></div>
+                </div>
+                <div class="col">
+                  <label>N° Documento</label>
+                  <div class="p-3 border bg-light"><%= afiliado.n_documento %></div>
+                </div>
+                </div>
+            <div>
+              <br>
+              <div class="card">
+                <form action="/solicitarRetiro" method="post" id="solicitarretiro">
+                  <div class="form-group">
+                      <legend>Retiro</legend>
+                      <label>Tipo de cuenta</label>
+                      <select  id="tipo_cuenta_retiro" name="tipo_cuenta_retiro" class="custom-select">
+                          <option value="Cuenta corriente" selected>Ahorro</option>
+                      <option value="PlanVital">Bancaria</option>
+                    </div>
+                  <input type="hidden" name="rut" value="<%= afiliado.rut %>"/>
+                  <input type="hidden" name="saldo" value="<%= afiliado.saldo_cuenta %>" />
+                  
+                  <label for="vol">Porcentaje</label>
+                  <br>
+                  <input type="range" id="porcentaje" name="porcentaje" class="form-range" min="1" max="10" step="1" value="1" onchange="document.getElementById('outvol').value=value">
+                  <output id= "outvol" name="outvol" for="porcentaje">1</output>
+                  <br>
+                  <input type="submit" class="btn btn-primary">
+                  
+              </form>
+              
+            </div>
+              </div>
+              
+          </content>
+        </div>
+        <% if (mensaje) {%>
+          <p class="alert alert-warning"><%= mensaje %></p>
+      <% } %>
+      </div>
+</body>
+<footer>
+	<p>
+		<br>
+	</p>
+</footer>
+</html>

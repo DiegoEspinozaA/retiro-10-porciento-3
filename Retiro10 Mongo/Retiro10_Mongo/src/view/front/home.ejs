@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+    <title>Retiro 10%</title>
+    <link href="/public/css/styles.css" rel="stylesheet" type="text/css">
+	<script src="https://kit.fontawesome.com/46b3483851.js" crossorigin="anonymous"></script>
+</head>
+<body>
+	<%if (signinMessage.length > 0) {%>
+		<div class="alert alert-danger" role="alert">
+			<%= signinMessage %>
+		  </div>
+	  <% } %>
+	
+<div class="container" id="container">
+	<div class="form-container sign-up-container">
+		<form action="/admin" method="POST">
+			<h1>Administrador</h1>
+            <br>
+			<p>Ingrese sus datos</p>
+			<input type="rut" id="rut" name="rut" placeholder="Rut" />
+			<input type="password" id="pass" name="pass" placeholder="Password" />
+			<br>
+			<button type="submit" class="admin">Login</button>
+		</form>
+	</div>
+	<div class="form-container sign-in-container">
+		<form action="/signin" method="POST">
+			<h1>Afiliado</h1>
+            <br>
+			<p>Ingrese sus datos</p>
+			<input type="rut" id="rut" name="rut" placeholder="Rut" />
+			<input type="password" id="pass" name="pass" placeholder="Password" />
+			<br>
+			<button type="submit" class="afiliado">Login</button>
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+				<h2 style="color: white;">Acceder como afiliado</h2>
+				<button class="ghost" id="signIn">
+					<h1 style="color: white;">
+						Aceptar
+					</h1>
+				</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h2 style="color: white;">Acceder como administrador</h2>
+				<button class="ghost" id="signUp">
+					<h1 style="color: white;">
+						Aceptar
+					</h1>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+<footer>
+	<p>
+		<br>
+	</p>
+</footer>
+<script>
+  const signUpButton = document.getElementById('signUp');
+const signInButton = document.getElementById('signIn');
+const container = document.getElementById('container');
+
+signUpButton.addEventListener('click', () => {
+	container.classList.add("right-panel-active");
+});
+
+signInButton.addEventListener('click', () => {
+	container.classList.remove("right-panel-active");
+});
+</script>
+</body>
+</html>
